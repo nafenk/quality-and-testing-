@@ -106,7 +106,7 @@ class RecipeTest {
 
     }
     @Test
-    public void testSetAmtSuggar() throws RecipeException {
+    public void testSetAmtSugar() throws RecipeException {
 
         recipe.setAmtSugar("8");
 
@@ -117,7 +117,7 @@ class RecipeTest {
 
     }
     @Test
-    public void testExcepSetAmtSuggar(){
+    public void testExcepSetAmtSugar(){
         try{
             recipe.setAmtSugar("1");
             fail("should fail");
