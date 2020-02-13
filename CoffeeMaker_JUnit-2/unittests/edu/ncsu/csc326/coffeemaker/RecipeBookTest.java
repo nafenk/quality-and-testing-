@@ -23,7 +23,9 @@ class RecipeBookTest {
         recipe.setName("white latte");
         recipeBook.addRecipe(recipe);
         recipeBook.addRecipe(recipe2);
+        Recipe[] book = recipeBook.getRecipes();
         assertEquals("white latte", recipeBook.deleteRecipe(0));
+        assertEquals("", book[0].getName());
 
     }
 
@@ -59,7 +61,7 @@ class RecipeBookTest {
         recipe1.setAmtMilk("1");
         recipe1.setAmtCoffee("1");
         recipe1.setAmtChocolate("1");
-        rb.addRecipe(recipe1);
+        assertTrue(rb.addRecipe(recipe1));
 
         /*
         Recipe mockRecipe= mock(Recipe.class);
