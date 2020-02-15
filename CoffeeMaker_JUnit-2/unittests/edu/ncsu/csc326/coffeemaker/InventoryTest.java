@@ -34,16 +34,16 @@ class InventoryTest {
     }
     @Test
     public void testExcepAddChocolate(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addChocolate("-1");
-        });
+
+        Throwable exception = assertThrows(InventoryException.class, () -> inventory.addChocolate("-1"));
+        assertEquals("Units of chocolate must be a positive integer", exception.getMessage());
 
     }
     @Test
     public void testExcepAddChocolate2(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addChocolate("Hello");
-        });
+
+        Throwable exception2 = assertThrows(InventoryException.class, () -> inventory.addChocolate("hello"));
+        assertEquals("Units of chocolate must be a positive integer", exception2.getMessage());
 
     }
 
@@ -58,16 +58,15 @@ class InventoryTest {
     }
     @Test
     public void testExcepAddCoffee(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addCoffee("-1");
-        });
+        Throwable exception = assertThrows(InventoryException.class, () -> inventory.addCoffee("hello"));
+        assertEquals("Units of coffee must be a positive integer", exception.getMessage());
 
     }
     @Test
     public void testExcepAddCoffee2(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addCoffee("Hello");
-        });
+        Throwable exception2 = assertThrows(InventoryException.class, () -> inventory.addCoffee("-1"));
+        assertEquals("Units of coffee must be a positive integer", exception2.getMessage());
+
 
     }
 
@@ -80,16 +79,15 @@ class InventoryTest {
     }
     @Test
     public void testExcepAddMilk(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addMilk("-1");
-        });
+        Throwable exception = assertThrows(InventoryException.class, () -> inventory.addMilk("-1"));
+        assertEquals("Units of milk must be a positive integer", exception.getMessage());
 
     }
     @Test
     public void testExcepAddMilk2(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addMilk("Hello");
-        });
+        Throwable exception = assertThrows(InventoryException.class, () -> inventory.addMilk("hello"));
+        assertEquals("Units of milk must be a positive integer", exception.getMessage());
+
 
     }
     /*
@@ -116,11 +114,19 @@ class InventoryTest {
      */
     @Test
     public void testExcepAddSugar(){
-        Assertions.assertThrows(InventoryException.class, () ->{
-            inventory.addSugar("-1");
-        });
+        Throwable exception = assertThrows(InventoryException.class, () -> inventory.addSugar("-1"));
+        assertEquals("Units of sugar must be a positive integer", exception.getMessage());
+
 
     }
+    @Test
+    public void testExcepAddSugar2(){
+        Throwable exception = assertThrows(InventoryException.class, () -> inventory.addSugar("hello"));
+        assertEquals("Units of sugar must be a positive integer", exception.getMessage());
+
+
+    }
+
 
 
 
