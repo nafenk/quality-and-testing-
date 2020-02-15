@@ -1,7 +1,9 @@
 package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
+import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 /**
  * 
@@ -17,6 +19,8 @@ public class CoffeeMakerTest extends TestCase {
 	private Recipe r3;
 	private Recipe r4;
 
+
+	@Test
 	protected void setUp() throws Exception {
 		cm = new CoffeeMaker();
 		
@@ -58,7 +62,7 @@ public class CoffeeMakerTest extends TestCase {
 		
 		super.setUp();
 	}
-	
+	@Test
 	public void testAddInventory() {
 		try {
 			cm.addInventory("4","7","0","9");
@@ -66,7 +70,7 @@ public class CoffeeMakerTest extends TestCase {
 			fail("InventoryException should not be thrown");
 		}
 	}
-	
+	@Test
 	public void testAddInventoryException() {
 		try {
 			cm.addInventory("4", "-1", "asdf", "3");
@@ -75,10 +79,33 @@ public class CoffeeMakerTest extends TestCase {
 			//success if thrown
 		}
 	}
-	
+	@Test
 	public void testMakeCoffee() {
 		cm.addRecipe(r1);
 		assertEquals(25, cm.makeCoffee(0, 75));
 	}
+	/*
+	if (getRecipes()[recipeToPurchase] == null) shows that
+	when a recipe is deleted it is not nullified hence
+	that statement doesn't apply on when it should.
+	 */
+	/*
+	@Test
+	public void testNull() throws RecipeException {
+
+		Recipe recipe= new Recipe();
+
+		recipe.setName("latte");
+		recipe.setPrice("20");
+		cm.addRecipe(recipe);
+		cm.deleteRecipe(0);
+
+		assertEquals(20, cm.makeCoffee(0,20));
+	}
+
+	 */
+
+
+
 
 }
