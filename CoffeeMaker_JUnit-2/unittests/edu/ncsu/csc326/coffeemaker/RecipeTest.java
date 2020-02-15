@@ -1,6 +1,7 @@
 package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,26 +18,6 @@ class RecipeTest {
         assertEquals(0,recipe.getAmtCoffee());
         assertEquals(0,recipe.getAmtMilk());
 
-
-
-        //recipe.setAmtChocolate("5");
-        /*
-        recipe.setAmtCoffee("5");
-        recipe.setAmtMilk("5");
-        recipe.setAmtSugar("5");
-
-         */
-
-
-
-       // assertEquals(5, recipe.getAmtChocolate());
-        /*
-        assertEquals(5, recipe.getAmtCoffee());
-        assertEquals(5, recipe.getAmtSugar());
-        assertEquals(5, recipe.getAmtMilk());
-
-         */
-
     }
 
 
@@ -51,16 +32,21 @@ class RecipeTest {
 
 
     }
+
+
     @Test
     public void testExcepSetAmtChocolate(){
-        try{
-            recipe.setAmtChocolate("hello");
-            fail("should fail");
-        }catch (NumberFormatException | RecipeException e){
-
-        }
-
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtSugar("Hello");
+        });
     }
+    @Test
+    public void testExcepSetAmtChocolate2(){
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtSugar("-1");
+        });
+    }
+
 
     @Test
     public void testSetAmtCoffee() throws RecipeException {
@@ -76,14 +62,20 @@ class RecipeTest {
 
     @Test
     public void testExcepSetAmtCoffee(){
-        try{
-            recipe.setAmtCoffee("hello");
-            fail("should fail");
-        }catch (NumberFormatException | RecipeException e){
-
-        }
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtCoffee("bye");
+        });
 
     }
+    @Test
+    public void testExcepSetAmtCoffee2(){
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtCoffee("-1");
+        });
+
+    }
+
+
     @Test
     public void testSetAmtMilk() throws RecipeException {
 
@@ -97,14 +89,19 @@ class RecipeTest {
     }
     @Test
     public void testExcepSetAmtMilk(){
-        try{
-            recipe.setAmtMilk("hello");
-            fail("should fail");
-        }catch (NumberFormatException | RecipeException e){
-
-        }
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtMilk("bye");
+        });
 
     }
+    @Test
+    public void testExcepSetAmtMilk2(){
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtMilk("-1");
+        });
+
+    }
+
     @Test
     public void testSetAmtSugar() throws RecipeException {
 
@@ -118,23 +115,36 @@ class RecipeTest {
     }
     @Test
     public void testExcepSetAmtSugar(){
-        try{
-            recipe.setAmtSugar("1");
-            fail("should fail");
-        }catch (NumberFormatException | RecipeException e){
-
-        }
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtSugar("-1");
+        });
 
     }
+    @Test
+    public void testExcepSetAmtSugar2(){
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setAmtSugar("hello");
+        });
+
+    }
+
     @Test
     public void testSetPrice() throws RecipeException {
         recipe.setPrice("5");
         assertEquals(5, recipe.getPrice());
     }
+    @Test
+    public void testExcepSetPrice(){
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setPrice("-1");
+        });
 
+    }
+    @Test
+    public void testExcepSetPrice2(){
+        Assertions.assertThrows(RecipeException.class, () ->{
+            recipe.setPrice("hello");
+        });
 
-
-
-
-
+    }
 }
