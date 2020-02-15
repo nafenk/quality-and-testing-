@@ -33,18 +33,14 @@ class RecipeTest {
 
     }
 
-
-    @Test
+ @Test
     public void testExcepSetAmtChocolate(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtSugar("Hello");
-        });
-    }
-    @Test
-    public void testExcepSetAmtChocolate2(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtSugar("-1");
-        });
+        Throwable exception = assertThrows(RecipeException.class, ()->recipe.setAmtChocolate("hello"));
+        Throwable exception2 = assertThrows(RecipeException.class, ()->recipe.setAmtChocolate("-2"));
+
+        assertEquals("Units of chocolate must be a positive integer", exception.getMessage());
+        assertEquals("Units of chocolate must be a positive integer", exception2.getMessage());
+
     }
 
 
@@ -60,21 +56,16 @@ class RecipeTest {
 
     }
 
-    @Test
+   @Test
     public void testExcepSetAmtCoffee(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtCoffee("bye");
-        });
 
+        Throwable exception = assertThrows(RecipeException.class, ()->recipe.setAmtCoffee("hello"));
+        Throwable exception2 = assertThrows(RecipeException.class, ()->recipe.setAmtCoffee("-4"));
+
+
+        assertEquals("Units of coffee must be a positive integer", exception.getMessage());
+        assertEquals("Units of coffee must be a positive integer", exception2.getMessage());
     }
-    @Test
-    public void testExcepSetAmtCoffee2(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtCoffee("-1");
-        });
-
-    }
-
 
     @Test
     public void testSetAmtMilk() throws RecipeException {
@@ -87,18 +78,18 @@ class RecipeTest {
 
 
     }
-    @Test
-    public void testExcepSetAmtMilk(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtMilk("bye");
-        });
+    
+   
+    
+=======
+        Throwable exception = assertThrows(RecipeException.class, ()->recipe.setAmtMilk("hello"));
+        Throwable exception2 = assertThrows(RecipeException.class, ()->recipe.setAmtMilk("-4"));
+
+        assertEquals("Units of milk must be a positive integer", exception.getMessage());
+        assertEquals("Units of milk must be a positive integer", exception2.getMessage());
 
     }
-    @Test
-    public void testExcepSetAmtMilk2(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtMilk("-1");
-        });
+
 
     }
 
@@ -113,19 +104,17 @@ class RecipeTest {
 
 
     }
-    @Test
+
+  
+
+   @Test
     public void testExcepSetAmtSugar(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtSugar("-1");
-        });
+        Throwable exception = assertThrows(RecipeException.class, ()->recipe.setAmtSugar("hello"));
+        Throwable exception2 = assertThrows(RecipeException.class, ()->recipe.setAmtSugar("-4"));
 
-    }
-    @Test
-    public void testExcepSetAmtSugar2(){
-        Assertions.assertThrows(RecipeException.class, () ->{
-            recipe.setAmtSugar("hello");
-        });
 
+        assertEquals("Units of sugar must be a positive integer", exception.getMessage());
+        assertEquals("Units of sugar must be a positive integer", exception2.getMessage());
     }
 
     @Test
@@ -146,5 +135,3 @@ class RecipeTest {
             recipe.setPrice("hello");
         });
 
-    }
-}
