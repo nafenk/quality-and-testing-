@@ -26,6 +26,7 @@ class InventoryTest {
         assertEquals(19,inventory.getSugar());
 
     }
+
     @Test
     public void testAddChocolate() throws InventoryException{
         inventory.addChocolate("1");

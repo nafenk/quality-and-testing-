@@ -10,26 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RecipeBookTest {
     public RecipeBook recipeBook = new RecipeBook();
 
-    /*
-    This test shows that adding a two recipes
-    that are the same is not possible
-     */
-    @Test
-    public void addRecipeTest() throws RecipeException {
-        Recipe[] book = recipeBook.getRecipes();
 
-        Recipe recipe = new Recipe();
-        recipe.setName("latte");
-        Recipe recipe1 = new Recipe();
-        recipe1.setName("latte");
-
-        recipeBook.addRecipe(recipe1);
-
-        assertFalse(recipeBook.addRecipe(recipe));
-
-        assertEquals(null, book[1]);
-
-    }
     /*
     This test shows that getRecipes
     returns an array that is empty
@@ -38,11 +19,47 @@ class RecipeBookTest {
     @Test
     public void getRecipesTest() {
         Recipe[] book = recipeBook.getRecipes();
+
         assertNotNull(recipeBook.getRecipes());
         for(int i=0; i<book.length;i++){
             assertNull(book[i]);
         }
     }
+
+
+    @Test
+    public void addOneRecipeTest() throws RecipeException{
+
+        Recipe recipe = new Recipe();
+        recipe.setName("coffee");
+        assertTrue(recipeBook.addRecipe(recipe));
+
+    }
+    /*
+    This test shows that adding a two recipes
+    that are the same is not possible
+     */
+
+    @Test
+    public void addRecipesTest() throws RecipeException {
+        Recipe[] book = recipeBook.getRecipes();
+
+        Recipe recipe = new Recipe();
+        recipe.setName("latte");
+
+
+        Recipe recipe1 = new Recipe();
+        recipe1.setName("latte");
+
+
+        recipeBook.addRecipe(recipe1);
+
+        assertFalse(recipeBook.addRecipe(recipe));
+
+        assertEquals(null, book[1]);
+
+    }
+
 
     /*
     This test shows that deleteRecipe
@@ -66,7 +83,7 @@ class RecipeBookTest {
     This test shows that deleting recipe does
     not result in nullifying the object
     but rather the deleted recipe got replaced
-    by another recipe that has the value 0 for price.
+    by another recipe that has the value "" for name.
      */
     @Test
     public void nullDeleteRecipeTest(){
@@ -81,7 +98,7 @@ class RecipeBookTest {
         recipeBook.addRecipe(recipe2);
         recipeBook.deleteRecipe(0);
 
-        assertEquals((Integer) null, book[0].getPrice());
+        assertEquals((Integer) null, book[0]);
 
 
     }
@@ -97,34 +114,14 @@ class RecipeBookTest {
     }
 
 
-    /*
-    This test shows shows that when one recipe is added
-    then deleted, then another recipe is added, it doesn't take the
-    deleted recipe position, as you would expect it to do logically.
-    and since there is a limited amount of recipes
-    that could be added, this is a problem, because new recipes wouldn't
-    be able to take the place of deleted recipes
-     */
-    @Test
-    public void makeThenDelete(){
-        Recipe recipe1= new Recipe();
-        recipe1.setName("latte");
-        Recipe recipe2= new Recipe();
-        recipe2.setName("coffee");
-        Recipe[] book = recipeBook.getRecipes();
 
-        recipeBook.addRecipe(recipe1);
-        recipeBook.deleteRecipe(0);
-        recipeBook.addRecipe(recipe2);
-        assertEquals("coffee", book[0].getName());
-
-    }
     /*
     This test shows that when we fill
     the recipe book with recipes( the max is 4)
     and one of these recipes is deleted, addRecipe(recipe5)
     should return true but instead it
-    return false
+    return false. This is a fault, because new recipes wouldn't
+    be able to take the place of deleted recipes.
      */
 
     @Test
@@ -151,8 +148,10 @@ class RecipeBookTest {
     the name of the recipe is returned and the new recipe
     details have been updated.
      */
+
+
     @Test
-    public void editRecipeTest1() throws RecipeException {
+    public void editRecipeTest() throws RecipeException {
         Recipe[] book = recipeBook.getRecipes();
 
         Recipe recipe = new Recipe();
@@ -191,11 +190,11 @@ class RecipeBookTest {
         recipe.setAmtChocolate("200");
         recipeBook.addRecipe(recipe);
         Recipe newRecipe = new Recipe();
-        newRecipe.setName("new milky mocha 2020");
+        newRecipe.setName("mocha");
         newRecipe.setAmtChocolate("50");
 
         recipeBook.editRecipe(0, newRecipe);
-        assertEquals("mocka",book[0].getName());
+        assertEquals("mocha",book[0].getName());
     }
 
 }
