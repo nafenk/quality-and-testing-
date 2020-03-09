@@ -43,6 +43,7 @@ public class Recipe {
     	}
 		if (amtChocolate >= 0) {
 			this.amtChocolate = amtChocolate;
+			//this.amtChocolate= this.name; //TODO: this is a mutant
 		} else {
 			throw new RecipeException("Units of chocolate must be a positive integer");
 		}
@@ -85,7 +86,7 @@ public class Recipe {
     	} catch (NumberFormatException e) {
     		throw new RecipeException("Units of milk must be a positive integer");
     	}
-		if (amtMilk >= 0) {
+		if (amtMilk < 0) { //TODO: this is a mutant 
 			this.amtMilk = amtMilk;
 		} else {
 			throw new RecipeException("Units of milk must be a positive integer");
