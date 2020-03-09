@@ -28,7 +28,7 @@ public class RecipeBook {
 		//find out otherwise
 		boolean exists = false;
 		//Check that recipe doesn't already exist in array
-		for (int i = 0; i < recipeArray.length; i++ ) {
+		for (int i = 0; i != recipeArray.length; i++ ) { // TODO: a mutant is here
 			if (r.equals(recipeArray[i])) {
 				exists = true;
 			}
@@ -40,7 +40,7 @@ public class RecipeBook {
 		if (!exists) {
 			for (int i = 0; i < recipeArray.length && !added; i++) {
 				if (recipeArray[i] == null) {
-					recipeArray[i] = r;
+	//				recipeArray[i] = r; //TODO: a mutant is here
 					added = true;
 				}
 			}
